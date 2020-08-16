@@ -2,12 +2,13 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import TabRoutes from './tab.routes';
 
 import Home from '../pages/Home';
 import FoodDetails from '../pages/FoodDetails';
+import OrderCreated from '../pages/OrderCreated';
+import OrderDetails from '../pages/OrderDetails';
 
 const App = createStackNavigator();
 
@@ -21,6 +22,14 @@ const AppRoutes: React.FC = () => (
         }}
         name="Home"
         component={Home}
+      />
+      <App.Screen
+        options={{
+          cardStyle: { backgroundColor: '#C72828' },
+          headerShown: false,
+        }}
+        name="OrderCreated"
+        component={OrderCreated}
       />
       <App.Screen
         name="MainBottom"
@@ -50,6 +59,36 @@ const AppRoutes: React.FC = () => (
             marginRight: 24,
           },
           headerTitle: 'Prato - Massas',
+          headerTitleStyle: {
+            color: '#fff',
+            fontFamily: 'Poppins-Regular',
+            fontSize: 16,
+          },
+          headerStyle: {
+            backgroundColor: '#C72828',
+            elevation: 0,
+            borderWidth: 0,
+            shadowColor: 'transparent',
+          },
+        })}
+      />
+      <App.Screen
+        name="OrderDetails"
+        component={OrderDetails}
+        options={({ navigation }) => ({
+          headerLeft: () => (
+            <Icon
+              name="arrow-left"
+              size={24}
+              color="#FFB84D"
+              onPress={() => navigation.goBack()}
+            />
+          ),
+          headerLeftContainerStyle: {
+            marginLeft: 24,
+          },
+
+          headerTitle: 'Detalhes do pedido',
           headerTitleStyle: {
             color: '#fff',
             fontFamily: 'Poppins-Regular',
